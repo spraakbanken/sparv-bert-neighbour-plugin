@@ -1,0 +1,18 @@
+metadata:
+    id: hello-bert-mask
+    language: swe
+
+import:
+    importer: text_import:parse
+
+xml_export:
+    annotations:
+        - <sentence>
+        - <token:word>
+        - <token>:stanza.pos
+        - <token>:sparv_bert_mask.transformer-neighbour-torch
+        - <token>:sparv_bert_mask.transformer-neighbour-tf
+        - <token>:sparv_bert_mask.transformer-neighbour-hf
+
+sparv:
+    compression: none
