@@ -1,4 +1,11 @@
-from sparv.api import annotator, Output, get_logger, Annotation
+from sparv.api import (
+    annotator,
+    Output,
+    get_logger,
+    Annotation,
+    Config,
+    SparvErrorMessage,
+)
 
 from transformers import (
     BertTokenizer,
@@ -8,6 +15,24 @@ from transformers import (
 
 __description__ = "Calculating word neighbours by mask a word in a BERT model."
 
+
+__config__ = [
+    Config(
+        "sparv_bert_mask.model",
+        description="Huggingface pretrained model name",
+        default="KB/bert-base-swedish-cased",
+    ),
+    Config(
+        "sparv_bert_mask.tokenizer",
+        description="HuggingFace pretrained tokenizer name",
+        default="KB/bert-base-swedish-cased",
+    ),
+    Config(
+        "sparv_bert_mask.num_neighbours",
+        description="The number of neighbours to list",
+        default=5,
+    ),
+]
 
 logger = get_logger(__name__)
 
@@ -26,12 +51,17 @@ def annotate_masked_bert(
     ),
     word: Annotation = Annotation("<token:word>"),
     sentence: Annotation = Annotation("<sentence>"),
+    model_name: str = Config("sparv_bert_mask.model"),
+    tokenizer_name: str = Config("sparv_bert_mask.tokenizer"),
+    num_neighbours_str: str = Config("sparv_bert_mask.num_neighbours"),
 ) -> None:
     logger.info("annotate_masked_bert")
-
-    tokenizer_name = "KB/bert-base-swedish-cased"
-    model_name = "KB/bert-base-swedish-cased"
-
+    try:
+        num_neighbours = int(num_neighbours_str)
+    except ValueError as exc:
+        raise SparvErrorMessage(
+            f"'sparv_bert_mask.num_neighbours' must contain an 'int' got: '{num_neighbours_str}'"
+        ) from exc
     tokenizer = BertTokenizer.from_pretrained(tokenizer_name)
     model = BertForMaskedLM.from_pretrained(model_name)
 
@@ -41,7 +71,9 @@ def annotate_masked_bert(
     token_word = list(word.read())
     out_neighbour_annotation = word.create_empty_attribute()
 
+    logger.progress(total=len(sentences))
     for sent in sentences:
+        logger.progress()
         token_indices = list(sent)
         for token_index_to_mask in token_indices:
             sent_to_tag = TOK_SEP.join(
@@ -51,7 +83,9 @@ def annotate_masked_bert(
                 for token_index in sent
             )
 
-            neighbours_scores = hf_top_k_predictor.get_top_k_predictions(sent_to_tag)
+            neighbours_scores = hf_top_k_predictor.get_top_k_predictions(
+                sent_to_tag, k=num_neighbours
+            )
             out_neighbour_annotation[token_index_to_mask] = neighbours_scores
 
     logger.info("writing annotations")
