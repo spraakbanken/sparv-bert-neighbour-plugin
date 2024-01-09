@@ -34,6 +34,8 @@ __config__ = [
     ),
 ]
 
+VERSION = "0.1.0"
+
 logger = get_logger(__name__)
 
 TOK_SEP = " "
