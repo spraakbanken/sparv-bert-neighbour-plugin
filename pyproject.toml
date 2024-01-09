@@ -10,8 +10,24 @@ dependencies = [
     "transformers>=4.34.1",
     "tabulate>=0.9.0",
 ]
+license = "MIT"
 readme = "README.md"
 requires-python = ">= 3.8"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    # "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: Unix",
+    "Operating System :: POSIX",
+    # "Operating System :: Microsoft :: Windows",
+    "Programming Language :: Python :: Implementation :: CPython",
+    # "uncomment if you test on these interpreters:",
+    # "Programming Language :: Python :: Implementation :: IronPython",
+    # "Programming Language :: Python :: Implementation :: Jython",
+    # "Programming Language :: Python :: Implementation :: Stackless",
+    "Topic :: Utilities",
+]
 
 [build-system]
 requires = ["hatchling"]
@@ -20,9 +36,17 @@ build-backend = "hatchling.build"
 [project.entry-points."sparv.plugin"]
 sparv_bert_neighbour = "sparv_bert_neighbour"
 
+[project.optional-dependencies]
+ci = ["ruff>=0.1.1"]
+
+[project.urls]
+Homepage = "https://github.com/spraakbanken/sparv-bert-neighbour-plugin"
+Repository = "https://github.com/spraakbanken/sparv-bert-neighbour-plugin"
+"Bug Tracker" = "https://github.com/spraakbanken/sparv-bert-neighbour-plugin/issues"
+
 [tool.rye]
 managed = true
-dev-dependencies = ["pytest>=7.4.2", "black>=23.10.1"]
+dev-dependencies = ["pytest>=7.4.2", "black>=23.10.1", "mypy>=1.8.0"]
 
 [tool.hatch.build.targets.sdist]
 exclude = ["/.github", "/docs"]
@@ -32,3 +56,6 @@ packages = ["src/sparv_bert_neighbour"]
 
 [tool.hatch.metadata]
 allow-direct-references = true
+
+[tool.black]
+target-version = ["py38", "py39", "py310", "py311", "py312"]

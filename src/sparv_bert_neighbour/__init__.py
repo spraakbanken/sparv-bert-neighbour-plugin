@@ -1,4 +1,4 @@
-from sparv.api import (
+from sparv.api import ( # type: ignore [import-untyped]
     annotator,
     Output,
     get_logger,
@@ -7,7 +7,7 @@ from sparv.api import (
     SparvErrorMessage,
 )
 
-from transformers import (
+from transformers import ( # type: ignore [import-untyped]
     BertTokenizer,
     BertForMaskedLM,
     FillMaskPipeline,
