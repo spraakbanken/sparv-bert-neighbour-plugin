@@ -239,9 +239,9 @@ jobs:
           name: pypi_files
           path: dist
 
-      - run: rm -r src/json_streams
+      - run: rm -r src/sparv_bert_neighbour
       - run: pip install typing-extensions
-      - run: pip install -r tests/requirements.txt
+      - run: pip install -r tests/requirements-test.txt
       - run: pip install sparv-bert-neighbour-plugin --no-index --no-deps --find-links dist --force-reinstall
       - run: pytest
 
