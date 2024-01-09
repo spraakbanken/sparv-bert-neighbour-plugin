@@ -43,7 +43,6 @@ TOK_SEP = " "
 
 @annotator(
     "Word neighbour tagging with a masked Bert model",
-    language=["swe"],
 )
 def annotate_masked_bert(
     out_neighbour: Output = Output(
