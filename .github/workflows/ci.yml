@@ -46,13 +46,6 @@ jobs:
         with:
           python-version: ${{ env.MINIMUM_PYTHON_VERSION }}
           cache-extra-key: ${{ matrix.json-lib }}
-       
-      #----------------------------------------------
-      # Install json library, if not using stock
-      #----------------------------------------------
-      - name: Install json library
-        if: matrix.json-lib != 'json'
-        run: make install-dev-${{ matrix.json-lib }}
       #----------------------------------------------
       # Run matrix task
       #----------------------------------------------
