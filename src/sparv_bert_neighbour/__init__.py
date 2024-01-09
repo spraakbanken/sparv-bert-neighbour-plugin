@@ -18,17 +18,17 @@ __description__ = "Calculating word neighbours by mask a word in a BERT model."
 
 __config__ = [
     Config(
-        "sparv_bert_mask.model",
+        "sparv_bert_neighbour.model",
         description="Huggingface pretrained model name",
         default="KB/bert-base-swedish-cased",
     ),
     Config(
-        "sparv_bert_mask.tokenizer",
+        "sparv_bert_neighbour.tokenizer",
         description="HuggingFace pretrained tokenizer name",
         default="KB/bert-base-swedish-cased",
     ),
     Config(
-        "sparv_bert_mask.num_neighbours",
+        "sparv_bert_neighbour.num_neighbours",
         description="The number of neighbours to list",
         default=5,
     ),
@@ -45,22 +45,22 @@ TOK_SEP = " "
 )
 def annotate_masked_bert(
     out_neighbour: Output = Output(
-        "<token>:sparv_bert_mask.transformer-neighbour",
+        "<token>:sparv_bert_neighbour.transformer-neighbour",
         cls="transformer_neighbour",
         description="Transformer neighbours from masked BERT (format: '|<word>:<score>|...|)",
     ),
     word: Annotation = Annotation("<token:word>"),
     sentence: Annotation = Annotation("<sentence>"),
-    model_name: str = Config("sparv_bert_mask.model"),
-    tokenizer_name: str = Config("sparv_bert_mask.tokenizer"),
-    num_neighbours_str: str = Config("sparv_bert_mask.num_neighbours"),
+    model_name: str = Config("sparv_bert_neighbour.model"),
+    tokenizer_name: str = Config("sparv_bert_neighbour.tokenizer"),
+    num_neighbours_str: str = Config("sparv_bert_neighbour.num_neighbours"),
 ) -> None:
     logger.info("annotate_masked_bert")
     try:
         num_neighbours = int(num_neighbours_str)
     except ValueError as exc:
         raise SparvErrorMessage(
-            f"'sparv_bert_mask.num_neighbours' must contain an 'int' got: '{num_neighbours_str}'"
+            f"'sparv_bert_neighbour.num_neighbours' must contain an 'int' got: '{num_neighbours_str}'"
         ) from exc
     tokenizer = BertTokenizer.from_pretrained(tokenizer_name)
     model = BertForMaskedLM.from_pretrained(model_name)

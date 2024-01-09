@@ -1,7 +1,7 @@
 [project]
-name = "sparv-bert-mask-plugin"
+name = "sparv-bert-neighbour-plugin"
 version = "0.1.0"
-description = "Add your description here"
+description = "A sparv plugin for computing word neighbours using a BERT model."
 authors = [
     { name = "Kristoffer Andersson", email = "kristoffer.andersson@gu.se" },
 ]
@@ -9,7 +9,6 @@ dependencies = [
     "sparv-pipeline >=5.2.0",
     "transformers>=4.34.1",
     "tabulate>=0.9.0",
-    "tensorflow>=2.13.1",
 ]
 readme = "README.md"
 requires-python = ">= 3.8"
@@ -19,7 +18,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project.entry-points."sparv.plugin"]
-sparv_bert_mask = "sparv_bert_mask"
+sparv_bert_neighbour = "sparv_bert_neighbour"
 
 [tool.rye]
 managed = true
@@ -29,7 +28,7 @@ dev-dependencies = ["pytest>=7.4.2", "black>=23.10.1"]
 exclude = ["/.github", "/docs"]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/sparv_bert_mask"]
+packages = ["src/sparv_bert_neighbour"]
 
 [tool.hatch.metadata]
 allow-direct-references = true

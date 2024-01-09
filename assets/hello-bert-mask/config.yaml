@@ -10,7 +10,7 @@ xml_export:
         - <sentence>
         - <token:word>
         - <token>:stanza.pos
-        - <token>:sparv_bert_mask.transformer-neighbour
+        - <token>:sparv_bert_neighbour.transformer-neighbour
 
 sparv:
     compression: none
