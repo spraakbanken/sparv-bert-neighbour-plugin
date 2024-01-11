@@ -21,7 +21,7 @@ dev: install-dev
 
 # setup development environment
 install-dev:
-	rye sync 
+	rye sync --no-lock
 
 test: run-all-tests
 
