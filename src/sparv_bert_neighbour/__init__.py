@@ -74,7 +74,7 @@ def annotate_masked_bert(
 
     logger.progress(total=len(sentences))  # type: ignore
     for sent in sentences:
-        logger.progress() # type: ignore
+        logger.progress()  # type: ignore
         token_indices = list(sent)
         for token_index_to_mask in token_indices:
             sent_to_tag = TOK_SEP.join(
@@ -102,7 +102,7 @@ class HuggingFaceTopKPredictor:
     def get_top_k_predictions(self, text: str, k=5) -> str:
         if predictions := self.pipeline(text, top_k=k):
             predictions_str = "|".join(
-                f"{pred['token_str']}:{pred['score']}" for pred in predictions # type: ignore
+                f"{pred['token_str']}:{pred['score']}" for pred in predictions  # type: ignore
             )
             return f"|{predictions_str}|"
         else:
