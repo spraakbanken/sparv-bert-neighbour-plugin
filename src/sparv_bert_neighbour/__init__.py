@@ -20,12 +20,12 @@ __config__ = [
     Config(
         "sparv_bert_neighbour.model",
         description="Huggingface pretrained model name",
-        default="KB/bert-base-swedish-cased",
+        default="KBLab/bert-base-swedish-cased",
     ),
     Config(
         "sparv_bert_neighbour.tokenizer",
         description="HuggingFace pretrained tokenizer name",
-        default="KB/bert-base-swedish-cased",
+        default="KBLab/bert-base-swedish-cased",
     ),
     Config(
         "sparv_bert_neighbour.num_neighbours",
@@ -72,9 +72,9 @@ def annotate_masked_bert(
     token_word = list(word.read())
     out_neighbour_annotation = word.create_empty_attribute()
 
-    logger.progress(total=len(sentences))
+    logger.progress(total=len(sentences))  # type: ignore
     for sent in sentences:
-        logger.progress()
+        logger.progress() # type: ignore
         token_indices = list(sent)
         for token_index_to_mask in token_indices:
             sent_to_tag = TOK_SEP.join(
@@ -102,7 +102,7 @@ class HuggingFaceTopKPredictor:
     def get_top_k_predictions(self, text: str, k=5) -> str:
         if predictions := self.pipeline(text, top_k=k):
             predictions_str = "|".join(
-                f"{pred['token_str']}:{pred['score']}" for pred in predictions
+                f"{pred['token_str']}:{pred['score']}" for pred in predictions # type: ignore
             )
             return f"|{predictions_str}|"
         else:
