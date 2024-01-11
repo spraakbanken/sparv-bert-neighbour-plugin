@@ -34,7 +34,7 @@ __config__ = [
     ),
 ]
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 logger = get_logger(__name__)
 

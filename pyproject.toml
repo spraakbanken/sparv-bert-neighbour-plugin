@@ -1,6 +1,6 @@
 [project]
 name = "sparv-bert-neighbour-plugin"
-version = "0.1.0"
+version = "0.1.1"
 description = "A sparv plugin for computing word neighbours using a BERT model."
 authors = [
     { name = "Kristoffer Andersson", email = "kristoffer.andersson@gu.se" },
