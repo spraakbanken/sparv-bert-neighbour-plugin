@@ -53,7 +53,7 @@ sparv_bert_neighbour:
 
 #### Number of Neighbours
 
-The number of neighbousr defaults to `5` but can be configured in `config.yaml`:
+The number of neighbours defaults to `5` but can be configured in `config.yaml`:
 
 ```yaml
 sparv_bert_neighbour:
