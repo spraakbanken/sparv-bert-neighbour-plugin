@@ -34,7 +34,7 @@ run-doc-tests:
 	${INVENV} python -m doctest -v karp_lex/value_objects/unique_id.py
 
 # run all tests with coverage collection
-run-all-tests-w-coverage:
+test-w-coverage:
 	${INVENV} pytest -vv --cov=src/${PROJECT}  --cov-report=xml tests
 
 # check types
