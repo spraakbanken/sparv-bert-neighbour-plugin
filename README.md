@@ -20,6 +20,7 @@ pipx inject sparv-pipeline sparv-bert-neighbour-plugin
 ```
 
 ## Usage
+
 Depending on how many exlicit exports of annotations you have you can decide to use this 
 annotation exclusively by adding it as the only annotation to export under `xml_export`:
 
@@ -28,6 +29,7 @@ xml_export:
     annotations:
         - <token>:sparv_bert_neighbour.transformer-neighbour
 ```
+
 To use it together with other annotations you might add it under `export`:
 
 ```yaml
