@@ -5,7 +5,7 @@ metadata:
 import:
     importer: text_import:parse
 
-xml_export:
+export:
     annotations:
         - <sentence>
         - <token:word>
