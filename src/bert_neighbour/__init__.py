@@ -18,17 +18,17 @@ __description__ = "Calculating word neighbours by mask a word in a BERT model."
 
 __config__ = [
     Config(
-        "sparv_bert_neighbour.model",
+        "bert_neighbour.model",
         description="Huggingface pretrained model name",
         default="KBLab/bert-base-swedish-cased",
     ),
     Config(
-        "sparv_bert_neighbour.tokenizer",
+        "bert_neighbour.tokenizer",
         description="HuggingFace pretrained tokenizer name",
         default="KBLab/bert-base-swedish-cased",
     ),
     Config(
-        "sparv_bert_neighbour.num_neighbours",
+        "bert_neighbour.num_neighbours",
         description="The number of neighbours to list",
         default=5,
     ),
@@ -46,22 +46,22 @@ TOK_SEP = " "
 )
 def annotate_masked_bert(
     out_neighbour: Output = Output(
-        "<token>:sparv_bert_neighbour.transformer-neighbour",
+        "<token>:bert_neighbour.transformer-neighbour",
         cls="transformer_neighbour",
         description="Transformer neighbours from masked BERT (format: '|<word>:<score>|...|)",
     ),
     word: Annotation = Annotation("<token:word>"),
     sentence: Annotation = Annotation("<sentence>"),
-    model_name: str = Config("sparv_bert_neighbour.model"),
-    tokenizer_name: str = Config("sparv_bert_neighbour.tokenizer"),
-    num_neighbours_str: str = Config("sparv_bert_neighbour.num_neighbours"),
+    model_name: str = Config("bert_neighbour.model"),
+    tokenizer_name: str = Config("bert_neighbour.tokenizer"),
+    num_neighbours_str: str = Config("bert_neighbour.num_neighbours"),
 ) -> None:
     logger.info("annotate_masked_bert")
     try:
         num_neighbours = int(num_neighbours_str)
     except ValueError as exc:
         raise SparvErrorMessage(
-            f"'sparv_bert_neighbour.num_neighbours' must contain an 'int' got: '{num_neighbours_str}'"
+            f"'bert_neighbour.num_neighbours' must contain an 'int' got: '{num_neighbours_str}'"
         ) from exc
     tokenizer = BertTokenizer.from_pretrained(tokenizer_name)
     model = BertForMaskedLM.from_pretrained(model_name)
@@ -78,9 +78,11 @@ def annotate_masked_bert(
         token_indices = list(sent)
         for token_index_to_mask in token_indices:
             sent_to_tag = TOK_SEP.join(
-                "[MASK]"
-                if token_index == token_index_to_mask
-                else token_word[token_index]
+                (
+                    "[MASK]"
+                    if token_index == token_index_to_mask
+                    else token_word[token_index]
+                )
                 for token_index in sent
             )
 

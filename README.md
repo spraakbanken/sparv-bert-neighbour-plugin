@@ -27,7 +27,7 @@ annotation exclusively by adding it as the only annotation to export under `xml_
 ```yaml
 xml_export:
     annotations:
-        - <token>:sparv_bert_neighbour.transformer-neighbour
+        - <token>:bert_neighbour.transformer-neighbour
 ```
 
 To use it together with other annotations you might add it under `export`:
@@ -35,7 +35,7 @@ To use it together with other annotations you might add it under `export`:
 ```yaml
 export:
     annotations:
-        - <token>:sparv_bert_neighbour.transformer-neighbour
+        - <token>:bert_neighbour.transformer-neighbour
         ...
 ```
 
@@ -50,7 +50,7 @@ You can configure this plugin by choosing a huggingface model, huggingface trans
 The model defaults to [`KBLab/bert-base-swedish-cased`](https://huggingface.co/KBLab/bert-base-swedish-cased) but can be configured in `config.yaml`:
 
 ```yaml
-sparv_bert_neighbour:
+bert_neighbour:
     model: "KBLab/bert-base-swedish-cased"
 ```
 
@@ -59,7 +59,7 @@ sparv_bert_neighbour:
 The tokenizer defaults to [`KBLab/bert-base-swedish-cased`](https://huggingface.co/KBLab/bert-base-swedish-cased) but can be configured in `config.yaml`:
 
 ```yaml
-sparv_bert_neighbour:
+bert_neighbour:
     tokenizer: "KBLab/bert-base-swedish-cased"
 ```
 
@@ -68,6 +68,6 @@ sparv_bert_neighbour:
 The number of neighbours defaults to `5` but can be configured in `config.yaml`:
 
 ```yaml
-sparv_bert_neighbour:
+bert_neighbour:
     num_neighbours: 5
 ```
