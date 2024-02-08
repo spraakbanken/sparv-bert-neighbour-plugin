@@ -49,8 +49,8 @@ help:
 	@echo ""
 
 PLATFORM := `uname -o`
-REPO := "<REPO-NAME-HERE>"
-PROJECT_SRC := "<SRC-FOLDER-HERE>"
+REPO := "sparv-bert-neighbour-plugin"
+PROJECT_SRC := "src/sparv_bert_neighbour"
 
 ifeq (${VIRTUAL_ENV},)
   VENV_NAME = .venv
