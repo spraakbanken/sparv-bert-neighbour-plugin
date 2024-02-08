@@ -34,7 +34,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project.entry-points."sparv.plugin"]
-sparv_bert_neighbour = "sparv_bert_neighbour"
+bert_neighbour = "bert_neighbour"
 
 [project.urls]
 Homepage = "https://github.com/spraakbanken/sparv-bert-neighbour-plugin"
@@ -55,7 +55,7 @@ dev-dependencies = [
 exclude = ["/.github", "/docs"]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/sparv_bert_neighbour"]
+packages = ["src/bert_neighbour"]
 
 [tool.hatch.metadata]
 allow-direct-references = true

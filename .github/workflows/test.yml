@@ -206,7 +206,7 @@ jobs:
           name: pypi_files
           path: dist
 
-      - run: rm -r src/sparv_bert_neighbour
+      - run: rm -r src/bert_neighbour
       - run: pip install typing-extensions
       - run: pip install -r tests/requirements-testing.txt
       - run: pip install sparv-bert-neighbour-plugin --no-index --no-deps --find-links dist --force-reinstall

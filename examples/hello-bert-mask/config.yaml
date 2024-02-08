@@ -10,7 +10,7 @@ export:
         - <sentence>
         - <token:word>
         - <token>:stanza.pos
-        - <token>:sparv_bert_neighbour.transformer-neighbour
+        - <token>:bert_neighbour.transformer-neighbour
 
 sparv:
     compression: none

@@ -50,7 +50,7 @@ help:
 
 PLATFORM := `uname -o`
 REPO := "sparv-bert-neighbour-plugin"
-PROJECT_SRC := "src/sparv_bert_neighbour"
+PROJECT_SRC := "src/bert_neighbour"
 
 ifeq (${VIRTUAL_ENV},)
   VENV_NAME = .venv
