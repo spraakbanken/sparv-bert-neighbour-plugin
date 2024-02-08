@@ -28,7 +28,6 @@ jobs:
         os: [ubuntu] 
         python-version:
           # remove the unused versions
-          - "3.8"
           - "3.9"
           - "3.10"
           - "3.11"
@@ -246,10 +245,10 @@ jobs:
           name: pypi_files
           path: dist
 
-      - run: rm -r src/ocr_suggestion
+      - run: rm -r src/sparv_bert_neighbour
       - run: pip install typing-extensions
       - run: pip install -r tests/requirements-testing.txt
-      - run: pip install sparv-ocr-suggestion-plugin --no-index --no-deps --find-links dist --force-reinstall
+      - run: pip install sparv-bert-neighbour-plugin --no-index --no-deps --find-links dist --force-reinstall
       - run: pytest
 
   publish:
