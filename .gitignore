@@ -174,3 +174,4 @@ assets/*/sparv-workdir
 assets/*/logs
 
 
+.pdm-python
