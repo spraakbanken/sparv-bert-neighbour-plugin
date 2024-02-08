@@ -168,9 +168,10 @@ requirements.lock
 requirements-dev.lock
 
 # Examples
-assets/*/.snakemake
-assets/*/export
-assets/*/sparv-workdir
-assets/*/logs
+examples/*/.snakemake
+examples/*/export
+examples/*/sparv-workdir
+examples/*/logs
 
 
+.pdm-python

@@ -36,9 +36,6 @@ build-backend = "hatchling.build"
 [project.entry-points."sparv.plugin"]
 sparv_bert_neighbour = "sparv_bert_neighbour"
 
-[project.optional-dependencies]
-ci = ["ruff>=0.1.1"]
-
 [project.urls]
 Homepage = "https://github.com/spraakbanken/sparv-bert-neighbour-plugin"
 Repository = "https://github.com/spraakbanken/sparv-bert-neighbour-plugin"
@@ -63,8 +60,6 @@ packages = ["src/sparv_bert_neighbour"]
 [tool.hatch.metadata]
 allow-direct-references = true
 
-[tool.black]
-target-version = ["py38", "py39", "py310", "py311", "py312"]
 
 [tool.hatch.envs.test]
 dependencies = ["pytest", "pytest-cov"]
@@ -74,3 +69,12 @@ dependencies = ["pytest", "pytest-cov"]
 
 [[tool.hatch.envs.test.matrix]]
 python = ["3.8", "3.9", "3.10", "3.11", "3.12"]
+
+[tool.pdm.dev-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "ruff>=0.2.1",
+    "mypy>=1.8.0",
+    "bump2version>=1.0.1",
+    "pytest-cov>=4.1.0",
+]
