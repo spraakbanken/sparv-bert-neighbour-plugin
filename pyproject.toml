@@ -1,5 +1,5 @@
 [project]
-name = "sparv-bert-neighbour-plugin"
+name = "sparv-word-prediction-plugin"
 version = "0.2.1"
 description = "A sparv plugin for computing word neighbours using a BERT model."
 authors = [
@@ -34,12 +34,12 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project.entry-points."sparv.plugin"]
-bert_neighbour = "bert_neighbour"
+word_prediction = "word_prediction"
 
 [project.urls]
-Homepage = "https://github.com/spraakbanken/sparv-bert-neighbour-plugin"
-Repository = "https://github.com/spraakbanken/sparv-bert-neighbour-plugin"
-"Bug Tracker" = "https://github.com/spraakbanken/sparv-bert-neighbour-plugin/issues"
+Homepage = "https://github.com/spraakbanken/sparv-word-prediction-plugin"
+Repository = "https://github.com/spraakbanken/sparv-word-prediction-plugin"
+"Bug Tracker" = "https://github.com/spraakbanken/sparv-word-prediction-plugin/issues"
 
 [tool.rye]
 managed = true

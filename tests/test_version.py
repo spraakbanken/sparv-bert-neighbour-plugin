@@ -1,5 +1,5 @@
-import bert_neighbour
+import word_prediction
 
 
 def test_version() -> None:
-    assert bert_neighbour.__version__ == "0.2.1"
+    assert word_prediction.__version__ == "0.2.1"
