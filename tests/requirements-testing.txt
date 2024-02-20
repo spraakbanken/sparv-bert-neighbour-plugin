@@ -435,9 +435,9 @@ nvidia-nvtx-cu12==12.1.105; platform_system == "Linux" and platform_machine == "
 packaging==23.2 \
     --hash=sha256:048fb0e9405036518eaaf48a55953c750c11e1a1b68e0dd1a9d62ed0c092cfc5 \
     --hash=sha256:8c491190033a9af7e1d931d0b5dacc2ef47509b34dd0de67ed209b5203fc88c7
-pdfminer-six==20221105 \
-    --hash=sha256:1eaddd712d5b2732f8ac8486824533514f8ba12a0787b3d5fe1e686cd826532d \
-    --hash=sha256:8448ab7b939d18b64820478ecac5394f482d7a79f5f7eaa7703c6c959c175e1d
+pdfminer-six==20231228 \
+    --hash=sha256:6004da3ad1a7a4d45930cb950393df89b068e73be365a6ff64a838d37bcb08c4 \
+    --hash=sha256:e8d3c3310e6fbc1fe414090123ab01351634b4ecb021232206c4c9a8ca3e3b8f
 pdfplumber==0.10.3 \
     --hash=sha256:4dd78ff1c62b99da8139daf5b62747613f6f0e970f225a3e911862e296599375 \
     --hash=sha256:7cb73f382278967db8d0e681f67aca82b41c32861df1d85f9f6a2cf18a175fa8
