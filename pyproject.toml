@@ -55,20 +55,11 @@ dev-dependencies = [
 exclude = ["/.github", "/docs"]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/bert_neighbour"]
+packages = ["src/word_prediction"]
 
 [tool.hatch.metadata]
 allow-direct-references = true
 
-
-[tool.hatch.envs.test]
-dependencies = ["pytest", "pytest-cov"]
-
-# [tool.hatch.envs.test.scripts]
-# run = "pytest tests"
-
-[[tool.hatch.envs.test.matrix]]
-python = ["3.8", "3.9", "3.10", "3.11", "3.12"]
 
 [tool.pdm.dev-dependencies]
 dev = [

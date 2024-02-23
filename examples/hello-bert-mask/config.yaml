@@ -1,16 +1,16 @@
 metadata:
-    id: hello-bert-mask
-    language: swe
+  id: hello-word-prediction
+  language: swe
 
 import:
-    importer: text_import:parse
+  importer: text_import:parse
 
 export:
-    annotations:
-        - <sentence>
-        - <token:word>
-        - <token>:stanza.pos
-        - <token>:word_prediction:word-prediction
+  annotations:
+    - <sentence>
+    - <token:word>
+    - <token>:stanza.pos
+    - <token>:word_prediction.word-prediction--kb-bert
 
 sparv:
-    compression: none
+  compression: none

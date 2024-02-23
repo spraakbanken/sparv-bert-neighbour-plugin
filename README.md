@@ -1,7 +1,7 @@
-# sparv-bert-neighbour-plugin
+# sparv-word-prediction-plugin
 
-[![CI](https://github.com/spraakbanken/sparv-bert-neighbour-plugin/actions/workflows/ci.yml/badge.svg)](https://github.com/spraakbanken/sparv-bert-neighbour-plugin/actions/workflows/ci.yml)
-[![PyPI version](https://badge.fury.io/py/sparv-bert-neighbour-plugin.svg)](https://pypi.org/project/sparv-bert-neighbour-plugin)
+[![CI](https://github.com/spraakbanken/sparv-word-prediction-plugin/actions/workflows/ci.yml/badge.svg)](https://github.com/spraakbanken/sparv-word-prediction-plugin/actions/workflows/ci.yml)
+[![PyPI version](https://badge.fury.io/py/sparv-word-prediction-plugin.svg)](https://pypi.org/project/sparv-word-prediction-plugin)
 
 Plugin for applying bert masking as a [Sparv](https://github.com/spraakbanken/sparv-pipeline) annotation.
 
@@ -13,10 +13,10 @@ First, install Sparv, as suggested:
 pipx install sparv-pipeline
 ```
 
-Then install install `sparv-bert-neighbour-plugin` with
+Then install install `sparv-word-prediction-plugin` with
 
 ```bash
-pipx inject sparv-pipeline sparv-bert-neighbour-plugin
+pipx inject sparv-pipeline sparv-word-prediction-plugin
 ```
 
 ## Usage
@@ -27,7 +27,7 @@ annotation exclusively by adding it as the only annotation to export under `xml_
 ```yaml
 xml_export:
     annotations:
-        - <token>:bert_neighbour.transformer-neighbour
+        - <token>:word_precition.word-prediction--kb-bert
 ```
 
 To use it together with other annotations you might add it under `export`:
@@ -35,7 +35,7 @@ To use it together with other annotations you might add it under `export`:
 ```yaml
 export:
     annotations:
-        - <token>:bert_neighbour.transformer-neighbour
+        - <token>:word_prediction.transformer-neighbour
         ...
 ```
 
@@ -50,7 +50,7 @@ You can configure this plugin by choosing a huggingface model, huggingface trans
 The model defaults to [`KBLab/bert-base-swedish-cased`](https://huggingface.co/KBLab/bert-base-swedish-cased) but can be configured in `config.yaml`:
 
 ```yaml
-bert_neighbour:
+word_prediction:
     model: "KBLab/bert-base-swedish-cased"
 ```
 
@@ -59,7 +59,7 @@ bert_neighbour:
 The tokenizer defaults to [`KBLab/bert-base-swedish-cased`](https://huggingface.co/KBLab/bert-base-swedish-cased) but can be configured in `config.yaml`:
 
 ```yaml
-bert_neighbour:
+word_prediction:
     tokenizer: "KBLab/bert-base-swedish-cased"
 ```
 
@@ -68,6 +68,6 @@ bert_neighbour:
 The number of neighbours defaults to `5` but can be configured in `config.yaml`:
 
 ```yaml
-bert_neighbour:
+word_prediction:
     num_neighbours: 5
 ```
