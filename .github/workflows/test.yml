@@ -98,7 +98,7 @@ jobs:
         run: make test
 
   run-example:
-    name: Run example
+    name: ubuntu / 3.9 / run-example
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -127,7 +127,7 @@ jobs:
       - name: Run example
         run: |
           source .venv/bin/activate
-          cd examples/hello-bert-mask
+          cd examples/word-prediction--kb-bert
           echo "" | sparv setup
           sparv run
           ls -R
