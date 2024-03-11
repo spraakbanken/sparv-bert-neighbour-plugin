@@ -13,7 +13,7 @@ from transformers import (  # type: ignore [import-untyped]
     BertTokenizer,
     BertForMaskedLM,
 )
-from word_prediction.predictor import HuggingFaceTopKPredictor
+from word_prediction.predictor import TopKPredictor
 
 __description__ = "Calculating word predictions by mask a word in a BERT model."
 
@@ -84,7 +84,7 @@ def predict_words__kb_bert(
         MODELS["kb-bert"].model_name, revision=MODELS["kb-bert"].model_revision
     )
 
-    predictor = HuggingFaceTopKPredictor(model=model, tokenizer=tokenizer)
+    predictor = TopKPredictor(model=model, tokenizer=tokenizer)
 
     sentences, _orphans = sentence.get_children(word)
     token_word = list(word.read())
@@ -103,7 +103,7 @@ def predict_words__kb_bert(
 
 
 def run_word_prediction(
-    predictor: HuggingFaceTopKPredictor,
+    predictor: TopKPredictor,
     num_predictions: int,
     sentences,
     token_word: list,
