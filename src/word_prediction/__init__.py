@@ -55,9 +55,7 @@ MODELS = {
 }
 
 
-@annotator(
-    "Word prediction tagging with a masked Bert model",
-)
+@annotator("Word prediction tagging with a masked Bert model", language=["swe"])
 def predict_words__kb_bert(
     out_prediction: Output = Output(
         "<token>:word_prediction.word-prediction--kb-bert",
