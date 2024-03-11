@@ -1,7 +1,8 @@
 # sparv-word-prediction-plugin
 
-[![CI](https://github.com/spraakbanken/sparv-word-prediction-plugin/actions/workflows/ci.yml/badge.svg)](https://github.com/spraakbanken/sparv-word-prediction-plugin/actions/workflows/ci.yml)
+[![CI](https://github.com/spraakbanken/sparv-word-prediction-plugin/actions/workflows/test.yml/badge.svg)](https://github.com/spraakbanken/sparv-word-prediction-plugin/actions/workflows/test.yml)
 [![PyPI version](https://badge.fury.io/py/sparv-word-prediction-plugin.svg)](https://pypi.org/project/sparv-word-prediction-plugin)
+[![Codecov](https://codecov.io/gh/spraakbanken/sparv-word-prediction-plugin/coverage.svg)](https://codecov.io/gh/spraakbanken/sparv-word-prediction-plugin)
 
 Plugin for applying bert masking as a [Sparv](https://github.com/spraakbanken/sparv-pipeline) annotation.
 
