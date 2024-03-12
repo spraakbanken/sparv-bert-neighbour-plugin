@@ -13,7 +13,7 @@ from transformers import (  # type: ignore [import-untyped]
     BertTokenizer,
     BertForMaskedLM,
 )
-from word_prediction.kb_bert.predictor import TopKPredictor
+from word_prediction_kb_bert.predictor import TopKPredictor
 
 __description__ = "Calculating word predictions by mask a word in a BERT model."
 
