@@ -55,7 +55,7 @@ help:
 
 PLATFORM := `uname -o`
 REPO := "sparv-word-prediction-plugin"
-PROJECT_SRC := "word-prediction--kb-bert/src"
+PROJECT_SRC := "word-prediction-kb-bert/src"
 
 ifeq (${VIRTUAL_ENV},)
   VENV_NAME = .venv
@@ -65,12 +65,12 @@ else
   INVENV =
 endif
 
-default_cov := "--cov=word-prediction--kb-bert/src/"
+default_cov := "--cov=word-prediction-kb-bert/src/"
 cov_report := "term-missing"
 cov := ${default_cov}
 
-all_tests := word-prediction--kb-bert/tests
-tests := word-prediction--kb-bert/tests
+all_tests := word-prediction-kb-bert/tests
+tests := word-prediction-kb-bert/tests
 
 info:
 	@echo "Platform: ${PLATFORM}"
