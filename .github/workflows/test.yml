@@ -137,7 +137,7 @@ jobs:
       - name: Run example
         run: |
           source .venv/bin/activate
-          cd examples/word-prediction--kb-bert
+          cd examples/word-prediction-kb-bert
           echo "" | sparv setup
           sparv run
           ls -R
