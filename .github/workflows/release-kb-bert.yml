@@ -46,7 +46,7 @@ jobs:
       #  -----  build distribution -----
       #----------------------------------------------
       - name: Build distribution
-        run: cd word-prediction--kb-bert && make build
+        run: cd word-prediction-kb-bert && make build
 
       #----------------------------------------------
       #  -----  upload artifacts  -----
