@@ -1,5 +1,5 @@
 import pytest
-from word_prediction import (
+from word_prediction.kb_bert import (
     MODELS,
     TopKPredictor,
 )

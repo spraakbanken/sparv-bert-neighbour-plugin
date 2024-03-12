@@ -1,5 +1,5 @@
 [project]
-name = "sparv-word-prediction-plugin"
+name = "sparv-word-prediction--kb-bert-plugin"
 version = "0.3.0"
 description = "A sparv plugin for computing word neighbours using a BERT model."
 authors = [
