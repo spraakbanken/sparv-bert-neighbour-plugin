@@ -6,7 +6,7 @@ version = "0.0.0"
 
 [tool.pdm.dev-dependencies]
 dev = [
-    "-e word-prediction--kb-bert @ file:///${PROJECT_ROOT}/word-prediction--kb-bert",
+    "-e word-prediction--kb-bert @ file:///${PROJECT_ROOT}/word-prediction-kb-bert",
     "bump2version>=1.0.1",
     "pytest>=8.1.1",
     "pytest-cov>=4.1.0",

@@ -1,5 +1,5 @@
 [project]
-name = "sparv-word-prediction--kb-bert-plugin"
+name = "sparv-word-prediction-kb-bert-plugin"
 version = "0.3.0"
 description = "A sparv plugin for computing word neighbours using a BERT model."
 authors = [
@@ -39,7 +39,7 @@ word_prediction_kb_bert = "word_prediction_kb_bert"
 [project.urls]
 Homepage = "https://spraakbanken.gu.se"
 Repository = "https://github.com/spraakbanken/sparv-word-prediction-plugin"
-"Bug Tracker" = "https://github.com/spraakbanken/sparv-word-prediction-plugin/issues"
+"Bug Tracker" = "https://github.com/spraakbanken/sparv-word-prediction-plugin/labels/project%3Aword-prediction--kb-bert"
 
 [tool.hatch.build.targets.sdist]
 exclude = ["/.github", "/docs"]
@@ -52,10 +52,4 @@ allow-direct-references = true
 
 
 [tool.pdm.dev-dependencies]
-dev = [
-    "pytest>=8.0.0",
-    "ruff>=0.2.1",
-    "mypy>=1.8.0",
-    "bump2version>=1.0.1",
-    "pytest-cov>=4.1.0",
-]
+dev = ["pytest>=8.0.0"]
