@@ -107,8 +107,8 @@ lint:
 	${INVENV} ruff ${PROJECT_SRC} ${tests}
 
 part := "patch"
-bumpversion: install-dev
-	${INVENV} bump2version ${part}
+bumpversion: 
+	${INVENV} bump-my-version ${part}
 
 # run formatter(s)
 fmt:
