@@ -45,6 +45,9 @@ help:
 	@echo "bumpversion [part=]"
 	@echo "   bumps the given part of the version of the project. (Default: part='patch')"
 	@echo ""
+	@echo "bumpversion-show"
+	@echo "   shows the bump path that is possible"
+	@echo ""
 	@echo "publish [branch=]"
 	@echo "   pushes the given branch including tags to origin, for CI to publish based on tags. (Default: branch='main')"
 	@echo "   Typically used after `make bumpversion`"
@@ -113,6 +116,13 @@ lint:
 # lint the code (and fix if possible)
 lint-fix:
 	${INVENV} ruff check --fix ${PROJECT_SRC} ${tests}
+
+part := "patch"
+bumpversion:
+	${INVENV} bump-my-version bump ${part}
+
+bumpversion-show:
+	${INVENV} bump-my-version show-bump
 
 # run formatter(s)
 fmt:
