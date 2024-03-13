@@ -59,3 +59,7 @@ Type | HuggingFace Model | Revision
 --- | --- | ---
 Model | [`KBLab/bert-base-swedish-cased`](https://huggingface.co/KBLab/bert-base-swedish-cased) | c710fb8dff81abb11d704cd46a8a1e010b2b022c
 Tokenizer | same as Model  | same as Model
+
+## Changelog
+
+This project keeps a [changelog](./CHANGELOG.md).
