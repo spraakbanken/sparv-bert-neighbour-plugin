@@ -108,7 +108,7 @@ lint:
 
 part := "patch"
 bumpversion: 
-	${INVENV} bump-my-version ${part}
+	${INVENV} bump-my-version bump ${part}
 
 # run formatter(s)
 fmt:
