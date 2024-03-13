@@ -30,9 +30,6 @@ help:
 	@echo "lint"
 	@echo "   lint the code"
 	@echo ""
-	@echo "lint-fix"
-	@echo "   lint the code and try to fix it"
-	@echo ""
 	@echo "type-check"
 	@echo "   check types"
 	@echo ""
@@ -45,9 +42,6 @@ help:
 	@echo "bumpversion [part=]"
 	@echo "   bumps the given part of the version of the project. (Default: part='patch')"
 	@echo ""
-	@echo "bumpversion-show"
-	@echo "   shows the bump path that is possible"
-	@echo ""
 	@echo "publish [branch=]"
 	@echo "   pushes the given branch including tags to origin, for CI to publish based on tags. (Default: branch='main')"
 	@echo "   Typically used after `make bumpversion`"
@@ -58,7 +52,7 @@ help:
 
 PLATFORM := `uname -o`
 REPO := "sparv-word-prediction-plugin"
-PROJECT_SRC := "word-prediction-kb-bert/src"
+PROJECT_SRC := "src/word_prediction"
 
 ifeq (${VIRTUAL_ENV},)
   VENV_NAME = .venv
@@ -68,12 +62,12 @@ else
   INVENV =
 endif
 
-default_cov := "--cov=word-prediction-kb-bert/src/"
+default_cov := "--cov=${PROJECT_SRC}"
 cov_report := "term-missing"
 cov := ${default_cov}
 
-all_tests := word-prediction-kb-bert/tests
-tests := word-prediction-kb-bert/tests
+all_tests := tests
+tests := tests
 
 info:
 	@echo "Platform: ${PLATFORM}"
@@ -110,19 +104,11 @@ type-check:
 .PHONY: lint
 # lint the code
 lint:
-	${INVENV} ruff check ${PROJECT_SRC} ${tests}
-
-.PHONY: lint-fix
-# lint the code (and fix if possible)
-lint-fix:
-	${INVENV} ruff check --fix ${PROJECT_SRC} ${tests}
+	${INVENV} ruff ${PROJECT_SRC} ${tests}
 
 part := "patch"
-bumpversion:
+bumpversion: 
 	${INVENV} bump-my-version bump ${part}
-
-bumpversion-show:
-	${INVENV} bump-my-version show-bump
 
 # run formatter(s)
 fmt:
@@ -142,8 +128,11 @@ publish:
 
 
 .PHONY: prepare-release
-prepare-release: tests/requirements-testing.lock
+prepare-release: tests/requirements-testing.lock CHANGELOG.md
 
 # we use lock extension so that dependabot doesn't pick up changes in this file
 tests/requirements-testing.lock: pyproject.toml
 	pdm export --dev --format requirements --output $@
+
+CHANGELOG.md:
+	git cliff --unreleased --prepend $@

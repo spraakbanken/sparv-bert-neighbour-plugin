@@ -1,0 +1,55 @@
+[project]
+name = "sparv-word-prediction-kb-bert-plugin"
+version = "0.4.0"
+description = "A sparv plugin for computing word neighbours using a BERT model."
+authors = [
+    { name = "Kristoffer Andersson", email = "kristoffer.andersson@gu.se" },
+]
+dependencies = [
+    "sparv-pipeline >=5.2.0",
+    "transformers>=4.34.1",
+    "tabulate>=0.9.0",
+]
+license = "MIT"
+readme = "README.md"
+requires-python = ">= 3.9"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    # "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: Unix",
+    "Operating System :: POSIX",
+    # "Operating System :: Microsoft :: Windows",
+    "Programming Language :: Python :: Implementation :: CPython",
+    # "uncomment if you test on these interpreters:",
+    # "Programming Language :: Python :: Implementation :: IronPython",
+    # "Programming Language :: Python :: Implementation :: Jython",
+    # "Programming Language :: Python :: Implementation :: Stackless",
+    "Topic :: Utilities",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project.entry-points."sparv.plugin"]
+word_prediction_kb_bert = "word_prediction_kb_bert"
+
+[project.urls]
+Homepage = "https://spraakbanken.gu.se"
+Repository = "https://github.com/spraakbanken/sparv-word-prediction-plugin"
+"Bug Tracker" = "https://github.com/spraakbanken/sparv-word-prediction-plugin/labels/project%3Aword-prediction--kb-bert"
+
+[tool.hatch.build.targets.sdist]
+exclude = ["/.github", "/docs"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/word_prediction_kb_bert"]
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+
+[tool.pdm.dev-dependencies]
+dev = ["pytest>=8.0.0"]

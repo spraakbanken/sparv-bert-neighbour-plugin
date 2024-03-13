@@ -10,7 +10,7 @@ export:
     - <sentence>
     - <token:word>
     - <token>:stanza.pos
-    - <token>:word_prediction.word-prediction--kb-bert
+    - <token>:word_prediction_kb_bert.word-prediction--kb-bert
 
 sparv:
   compression: none

@@ -1,6 +1,6 @@
 from typing import Tuple
 import pytest
-from word_prediction.predictor import TopKPredictor
+from word_prediction_kb_bert.predictor import TopKPredictor
 
 
 TEXTS: dict[str, str] = {

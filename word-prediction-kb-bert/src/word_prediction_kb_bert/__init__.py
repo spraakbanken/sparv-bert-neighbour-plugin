@@ -13,20 +13,20 @@ from transformers import (  # type: ignore [import-untyped]
     BertTokenizer,
     BertForMaskedLM,
 )
-from word_prediction.predictor import TopKPredictor
+from word_prediction_kb_bert.predictor import TopKPredictor
 
 __description__ = "Calculating word predictions by mask a word in a BERT model."
 
 
 __config__ = [
     Config(
-        "word_prediction.num_predictions",
+        "word_prediction_kb_bert.num_predictions",
         description="The number of predictions to list",
         default=5,
     ),
 ]
 
-__version__ = "0.3.0"
+__version__ = "0.4.0"
 
 logger = get_logger(__name__)
 
@@ -58,20 +58,20 @@ MODELS = {
 @annotator("Word prediction tagging with a masked Bert model", language=["swe"])
 def predict_words__kb_bert(
     out_prediction: Output = Output(
-        "<token>:word_prediction.word-prediction--kb-bert",
+        "<token>:word_prediction_kb_bert.word-prediction--kb-bert",
         cls="word_prediction",
         description="Word predictions from masked BERT (format: '|<word>:<score>|...|)",
     ),
     word: Annotation = Annotation("<token:word>"),
     sentence: Annotation = Annotation("<sentence>"),
-    num_predictions_str: str = Config("word_prediction.num_predictions"),
+    num_predictions_str: str = Config("word_prediction_kb_bert.num_predictions"),
 ) -> None:
     logger.info("predict_words")
     try:
         num_predictions = int(num_predictions_str)
     except ValueError as exc:
         raise SparvErrorMessage(
-            f"'word_prediction.num_predictions' must contain an 'int' got: '{num_predictions_str}'"
+            f"'word_prediction_kb_bert.num_predictions' must contain an 'int' got: '{num_predictions_str}'"
         ) from exc
     tokenizer_name, tokenizer_revision = MODELS["kb-bert"].tokenizer_name_and_revision()
 
