@@ -24,6 +24,11 @@ __config__ = [
         description="The number of predictions to list",
         default=5,
     ),
+    Config(
+        "work_prediction_kb_bert.num_decimals",
+        description="The number of decimals to round the score to",
+        default=3,
+    ),
 ]
 
 __version__ = "0.4.0"
@@ -65,6 +70,7 @@ def predict_words__kb_bert(
     word: Annotation = Annotation("<token:word>"),
     sentence: Annotation = Annotation("<sentence>"),
     num_predictions_str: str = Config("word_prediction_kb_bert.num_predictions"),
+    num_decimals_str: str = Config("word_prediction_kb_bert.num_deciamals"),
 ) -> None:
     logger.info("predict_words")
     try:
@@ -72,6 +78,12 @@ def predict_words__kb_bert(
     except ValueError as exc:
         raise SparvErrorMessage(
             f"'word_prediction_kb_bert.num_predictions' must contain an 'int' got: '{num_predictions_str}'"
+        ) from exc
+    try:
+        num_decimals = int(num_decimals_str)
+    except ValueError as exc:
+        raise SparvErrorMessage(
+            f"'word_prediction_kb_bert.num_decimals' must contain an 'int' got: '{num_decimals_str}'"
         ) from exc
     tokenizer_name, tokenizer_revision = MODELS["kb-bert"].tokenizer_name_and_revision()
 
@@ -82,7 +94,11 @@ def predict_words__kb_bert(
         MODELS["kb-bert"].model_name, revision=MODELS["kb-bert"].model_revision
     )
 
-    predictor = TopKPredictor(model=model, tokenizer=tokenizer)
+    predictor = TopKPredictor(
+        model=model,
+        tokenizer=tokenizer,
+        num_decimals=num_decimals,
+    )
 
     sentences, _orphans = sentence.get_children(word)
     token_word = list(word.read())
