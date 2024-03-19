@@ -25,7 +25,7 @@ __config__ = [
         default=5,
     ),
     Config(
-        "work_prediction_kb_bert.num_decimals",
+        "word_prediction_kb_bert.num_decimals",
         description="The number of decimals to round the score to",
         default=3,
     ),
@@ -70,7 +70,7 @@ def predict_words__kb_bert(
     word: Annotation = Annotation("<token:word>"),
     sentence: Annotation = Annotation("<sentence>"),
     num_predictions_str: str = Config("word_prediction_kb_bert.num_predictions"),
-    num_decimals_str: str = Config("word_prediction_kb_bert.num_deciamals"),
+    num_decimals_str: str = Config("word_prediction_kb_bert.num_decimals"),
 ) -> None:
     logger.info("predict_words")
     try:
