@@ -1,3 +1,4 @@
+from itertools import islice
 from typing import Tuple
 import pytest
 from word_prediction_kb_bert.predictor import TopKPredictor
@@ -28,6 +29,18 @@ def test_short_text(kb_bert_predictor: TopKPredictor) -> None:
     expected = "|Vi|Jag|De|Hon|Han|"
 
     assert actual == expected
+
+
+def test_rounding(kb_bert_predictor: TopKPredictor) -> None:
+    text = "namnet på det hus där historien börjar och slutar [MASK] men annars pratas det mest om huset . "
+    kb_bert_predictor.num_decimals = 2
+    actual = kb_bert_predictor.get_top_k_predictions(text)
+    kb_bert_predictor.num_decimals = 3
+    print(f"{actual=}")
+    expected = [",:0.92", "-:0.06"]
+
+    num_bars = actual.count("|")
+    assert list(islice(actual.split("|"), 1, num_bars)) == expected
 
 
 def remove_scores(actual):
