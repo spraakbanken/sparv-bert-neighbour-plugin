@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.5.0] - 2024-03-19
+
+### 🚀 Features
+
+- Enable rounding by num decimals
+
+### 🐛 Bug Fixes
+
+- Typo in name
+
 ## [0.4.0] - 2024-03-13
 
 ### 🐛 Bug Fixes
@@ -9,11 +19,6 @@ All notable changes to this project will be documented in this file.
 - Handle longer texts
 - Add language to annotator
 - Fix example
-
-### 🚜 Refactor
-
-- Move code
-- Update name
 
 ## [0.3.0] - 2024-02-23
 

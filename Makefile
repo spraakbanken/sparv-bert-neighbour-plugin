@@ -147,3 +147,13 @@ prepare-release: tests/requirements-testing.lock
 # we use lock extension so that dependabot doesn't pick up changes in this file
 tests/requirements-testing.lock: pyproject.toml
 	pdm export --dev --format requirements --output $@
+
+kb-bert-prepare-release: word-prediction-kb-bert/CHANGELOG.md
+
+update-changelog: CHANGELOG.md word-prediction-kb-bert/CHANGELOG.md
+
+CHANGELOG.md:
+	git cliff --unreleased --prepend $@
+
+word-prediction-kb-bert/CHANGELOG.md:
+	git cliff --unreleased --prepend --include-path "word-prediction-kb-bert/**/*" --include-path "examples/word-prediction-kb-bert/**/*" -o $@
