@@ -51,6 +51,17 @@ word_prediction_kb_bert:
     num_neighbours: 5
 ```
 
+#### Number of Decimals
+
+The number of decimals defaults to `3` but can be configured in `config.yaml`:
+
+```yaml
+word_prediction_kb_bert:
+    num_decimals: 3
+```
+
+> [!NOTE] This also controls the cut-off, so all values where the score round to 0.000 (or the number of decimals) is discarded.
+
 ### Metadata
 
 #### Model
