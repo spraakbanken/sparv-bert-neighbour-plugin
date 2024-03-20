@@ -148,6 +148,7 @@ prepare-release: tests/requirements-testing.lock
 tests/requirements-testing.lock: pyproject.toml
 	pdm export --dev --format requirements --output $@
 
+.PHONY: kb-bert-prepare-release
 kb-bert-prepare-release: word-prediction-kb-bert/CHANGELOG.md
 
 update-changelog: CHANGELOG.md word-prediction-kb-bert/CHANGELOG.md
@@ -155,5 +156,6 @@ update-changelog: CHANGELOG.md word-prediction-kb-bert/CHANGELOG.md
 CHANGELOG.md:
 	git cliff --unreleased --prepend $@
 
+.PHONY: word-prediction-kb-bert/CHANGELOG.md
 word-prediction-kb-bert/CHANGELOG.md:
-	git cliff --unreleased --prepend --include-path "word-prediction-kb-bert/**/*" --include-path "examples/word-prediction-kb-bert/**/*" -o $@
+	git cliff --unreleased --include-path "word-prediction-kb-bert/**/*" --include-path "examples/word-prediction-kb-bert/**/*" --prepend $@
