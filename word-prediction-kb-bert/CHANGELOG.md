@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [unreleased]
+
+### 🐛 Bug Fixes
+
+- Return empty set as empty
+
 ## [0.5.1] - 2024-03-20
 
 ### 📚 Documentation
