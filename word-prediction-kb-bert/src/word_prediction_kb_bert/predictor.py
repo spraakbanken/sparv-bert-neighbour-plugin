@@ -65,6 +65,7 @@ class TopKPredictor:
             predictions_str = "|".join(
                 f"{token}:{score}" for token, score in filter_out_zero_scores
             )
-            return f"|{predictions_str}|"
+
+            return f"|{predictions_str}|" if predictions_str else "|"
         else:
             return "|"
