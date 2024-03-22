@@ -1,4 +1,4 @@
-# sparv-sbx-word-prediction--kb-bert
+# sparv-sbx-word-prediction-kb-bert
 
 [![PyPI version](https://badge.fury.io/py/sparv-sbx-word-prediction-kb-bert.svg)](https://pypi.org/project/sparv-sbx-word-prediction-kb-bert)
 
