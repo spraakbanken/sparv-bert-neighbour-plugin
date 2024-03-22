@@ -31,7 +31,7 @@ annotation exclusively by adding it as the only annotation to export under `xml_
 ```yaml
 xml_export:
     annotations:
-        - <token>:word_prediction_kb_bert.word-prediction--kb-bert
+        - <token>:sbx_word_prediction_kb_bert.word-prediction--kb-bert
 ```
 
 To use it together with other annotations you might add it under `export`:
@@ -39,7 +39,7 @@ To use it together with other annotations you might add it under `export`:
 ```yaml
 export:
     annotations:
-        - <token>:word_prediction_kb_bert.word-prediction--kb-bert
+        - <token>:sbx_word_prediction_kb_bert.word-prediction--kb-bert
         ...
 ```
 
@@ -52,7 +52,7 @@ You can configure this plugin by the number of neighbours to generate.
 The number of neighbours defaults to `5` but can be configured in `config.yaml`:
 
 ```yaml
-word_prediction_kb_bert:
+sbx_word_prediction_kb_bert:
     num_neighbours: 5
 ```
 
@@ -61,7 +61,7 @@ word_prediction_kb_bert:
 The number of decimals defaults to `3` but can be configured in `config.yaml`:
 
 ```yaml
-word_prediction_kb_bert:
+sbx_word_prediction_kb_bert:
     num_decimals: 3
 ```
 

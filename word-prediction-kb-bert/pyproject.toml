@@ -34,7 +34,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project.entry-points."sparv.plugin"]
-word_prediction_kb_bert = "word_prediction_kb_bert"
+sbx_word_prediction_kb_bert = "sbx_word_prediction_kb_bert"
 
 [project.urls]
 Homepage = "https://spraakbanken.gu.se"
@@ -45,7 +45,7 @@ Repository = "https://github.com/spraakbanken/sparv-sbx-word-prediction"
 exclude = ["/.github", "/docs"]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/word_prediction_kb_bert"]
+packages = ["src/sbx_word_prediction_kb_bert"]
 
 [tool.hatch.metadata]
 allow-direct-references = true
