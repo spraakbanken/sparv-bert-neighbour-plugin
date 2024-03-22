@@ -1,6 +1,11 @@
-# sparv-word-prediction--kb-bert-plugin
+# sparv-sbx-word-prediction--kb-bert
 
-[![PyPI version](https://badge.fury.io/py/sparv-word-prediction-kb-bert-plugin.svg)](https://pypi.org/project/sparv-word-prediction-kb-bert-plugin)
+[![PyPI version](https://badge.fury.io/py/sparv-sbx-word-prediction-kb-bert.svg)](https://pypi.org/project/sparv-sbx-word-prediction-kb-bert)
+
+[![Maturity badge - level 2](https://img.shields.io/badge/Maturity-Level%202%20--%20First%20Release-yellowgreen.svg)](https://github.com/spraakbanken/getting-started/blob/main/scorecard.md)
+[![Stage](https://img.shields.io/pypi/status/sparv-sbx-word-prediction-kb-bert)](https://pypi.org/project/sparv-sbx-word-prediction-kb-bert/)
+
+[![CI(release)](https://github.com/spraakbanken/sparv-sbx-word-prediction/actions/workflows/release-kb-bert.yml/badge.svg)](https://github.com/spraakbanken/sparv-sbx-word-prediction/actions/workflows/release-kb-bert.yml)
 
 Plugin for applying bert masking as a [Sparv](https://github.com/spraakbanken/sparv-pipeline) annotation.
 
@@ -12,10 +17,10 @@ First, install Sparv, as suggested:
 pipx install sparv-pipeline
 ```
 
-Then install install `sparv-word-prediction-kb-bert-plugin` with
+Then install install `sparv-sbx-word-prediction-kb-bert` with
 
 ```bash
-pipx inject sparv-pipeline sparv-word-prediction-kb-bert-plugin
+pipx inject sparv-pipeline sparv-sbx-word-prediction-kb-bert
 ```
 
 ## Usage

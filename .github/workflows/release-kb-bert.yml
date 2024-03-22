@@ -89,7 +89,7 @@ jobs:
       - run: rm -r word-prediction-kb-bert/src
       # - run: pip install typing-extensions
       - run: pip install -r word-prediction-kb-bert/tests/requirements-testing.lock
-      - run: pip install sparv-word-prediction-kb-bert-plugin --no-index --no-deps --find-links dist --force-reinstall
+      - run: pip install sparv-sbx-word-prediction-kb-bert --no-index --no-deps --find-links dist --force-reinstall
       - run: pytest word-prediction-kb-bert/tests
   
   # https://github.com/marketplace/actions/alls-green#why used for branch protection checks
