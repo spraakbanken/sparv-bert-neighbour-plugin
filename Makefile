@@ -57,7 +57,7 @@ help:
 	@echo ""
 
 PLATFORM := `uname -o`
-REPO := "sparv-word-prediction-plugin"
+REPO := "sparv-sbx-word-prediction"
 PROJECT_SRC := "word-prediction-kb-bert/src"
 
 ifeq (${VIRTUAL_ENV},)

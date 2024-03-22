@@ -1,7 +1,7 @@
 from itertools import islice
 from typing import Tuple
 import pytest
-from word_prediction_kb_bert.predictor import TopKPredictor
+from sbx_word_prediction_kb_bert.predictor import TopKPredictor
 
 
 TEXTS: dict[str, str] = {

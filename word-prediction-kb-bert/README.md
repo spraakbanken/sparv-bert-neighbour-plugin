@@ -1,6 +1,11 @@
-# sparv-word-prediction--kb-bert-plugin
+# sparv-sbx-word-prediction-kb-bert
 
-[![PyPI version](https://badge.fury.io/py/sparv-word-prediction-kb-bert-plugin.svg)](https://pypi.org/project/sparv-word-prediction-kb-bert-plugin)
+[![PyPI version](https://badge.fury.io/py/sparv-sbx-word-prediction-kb-bert.svg)](https://pypi.org/project/sparv-sbx-word-prediction-kb-bert)
+
+[![Maturity badge - level 2](https://img.shields.io/badge/Maturity-Level%202%20--%20First%20Release-yellowgreen.svg)](https://github.com/spraakbanken/getting-started/blob/main/scorecard.md)
+[![Stage](https://img.shields.io/pypi/status/sparv-sbx-word-prediction-kb-bert)](https://pypi.org/project/sparv-sbx-word-prediction-kb-bert/)
+
+[![CI(release)](https://github.com/spraakbanken/sparv-sbx-word-prediction/actions/workflows/release-kb-bert.yml/badge.svg)](https://github.com/spraakbanken/sparv-sbx-word-prediction/actions/workflows/release-kb-bert.yml)
 
 Plugin for applying bert masking as a [Sparv](https://github.com/spraakbanken/sparv-pipeline) annotation.
 
@@ -12,10 +17,10 @@ First, install Sparv, as suggested:
 pipx install sparv-pipeline
 ```
 
-Then install install `sparv-word-prediction-kb-bert-plugin` with
+Then install install `sparv-sbx-word-prediction-kb-bert` with
 
 ```bash
-pipx inject sparv-pipeline sparv-word-prediction-kb-bert-plugin
+pipx inject sparv-pipeline sparv-sbx-word-prediction-kb-bert
 ```
 
 ## Usage
@@ -26,7 +31,7 @@ annotation exclusively by adding it as the only annotation to export under `xml_
 ```yaml
 xml_export:
     annotations:
-        - <token>:word_prediction_kb_bert.word-prediction--kb-bert
+        - <token>:sbx_word_prediction_kb_bert.word-prediction--kb-bert
 ```
 
 To use it together with other annotations you might add it under `export`:
@@ -34,7 +39,7 @@ To use it together with other annotations you might add it under `export`:
 ```yaml
 export:
     annotations:
-        - <token>:word_prediction_kb_bert.word-prediction--kb-bert
+        - <token>:sbx_word_prediction_kb_bert.word-prediction--kb-bert
         ...
 ```
 
@@ -47,7 +52,7 @@ You can configure this plugin by the number of neighbours to generate.
 The number of neighbours defaults to `5` but can be configured in `config.yaml`:
 
 ```yaml
-word_prediction_kb_bert:
+sbx_word_prediction_kb_bert:
     num_neighbours: 5
 ```
 
@@ -56,7 +61,7 @@ word_prediction_kb_bert:
 The number of decimals defaults to `3` but can be configured in `config.yaml`:
 
 ```yaml
-word_prediction_kb_bert:
+sbx_word_prediction_kb_bert:
     num_decimals: 3
 ```
 

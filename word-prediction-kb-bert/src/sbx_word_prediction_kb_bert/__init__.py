@@ -13,19 +13,19 @@ from transformers import (  # type: ignore [import-untyped]
     BertTokenizer,
     BertForMaskedLM,
 )
-from word_prediction_kb_bert.predictor import TopKPredictor
+from sbx_word_prediction_kb_bert.predictor import TopKPredictor
 
 __description__ = "Calculating word predictions by mask a word in a BERT model."
 
 
 __config__ = [
     Config(
-        "word_prediction_kb_bert.num_predictions",
+        "sbx_word_prediction_kb_bert.num_predictions",
         description="The number of predictions to list",
         default=5,
     ),
     Config(
-        "word_prediction_kb_bert.num_decimals",
+        "sbx_word_prediction_kb_bert.num_decimals",
         description="The number of decimals to round the score to",
         default=3,
     ),
@@ -63,27 +63,27 @@ MODELS = {
 @annotator("Word prediction tagging with a masked Bert model", language=["swe"])
 def predict_words__kb_bert(
     out_prediction: Output = Output(
-        "<token>:word_prediction_kb_bert.word-prediction--kb-bert",
+        "<token>:sbx_word_prediction_kb_bert.word-prediction--kb-bert",
         cls="word_prediction",
         description="Word predictions from masked BERT (format: '|<word>:<score>|...|)",
     ),
     word: Annotation = Annotation("<token:word>"),
     sentence: Annotation = Annotation("<sentence>"),
-    num_predictions_str: str = Config("word_prediction_kb_bert.num_predictions"),
-    num_decimals_str: str = Config("word_prediction_kb_bert.num_decimals"),
+    num_predictions_str: str = Config("sbx_word_prediction_kb_bert.num_predictions"),
+    num_decimals_str: str = Config("sbx_word_prediction_kb_bert.num_decimals"),
 ) -> None:
     logger.info("predict_words")
     try:
         num_predictions = int(num_predictions_str)
     except ValueError as exc:
         raise SparvErrorMessage(
-            f"'word_prediction_kb_bert.num_predictions' must contain an 'int' got: '{num_predictions_str}'"
+            f"'sbx_word_prediction_kb_bert.num_predictions' must contain an 'int' got: '{num_predictions_str}'"
         ) from exc
     try:
         num_decimals = int(num_decimals_str)
     except ValueError as exc:
         raise SparvErrorMessage(
-            f"'word_prediction_kb_bert.num_decimals' must contain an 'int' got: '{num_decimals_str}'"
+            f"'sbx_word_prediction_kb_bert.num_decimals' must contain an 'int' got: '{num_decimals_str}'"
         ) from exc
     tokenizer_name, tokenizer_revision = MODELS["kb-bert"].tokenizer_name_and_revision()
 
