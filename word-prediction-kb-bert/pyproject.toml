@@ -1,6 +1,6 @@
 [project]
 name = "sparv-sbx-word-prediction-kb-bert"
-version = "0.5.2"
+version = "0.5.3"
 description = "A sparv plugin for computing word neighbours using a BERT model."
 authors = [
     { name = "Kristoffer Andersson", email = "kristoffer.andersson@gu.se" },
