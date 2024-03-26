@@ -1,6 +1,8 @@
 # sparv-sbx-word-prediction-kb-bert
 
 [![PyPI version](https://badge.fury.io/py/sparv-sbx-word-prediction-kb-bert.svg)](https://pypi.org/project/sparv-sbx-word-prediction-kb-bert)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/sparv-sbx-word-prediction-kb-bert)
+[![PyPI - Downloads](https://img.shields.io/pypi/dm/json-arrays)](https://pypi.org/project/sparv-sbx-word-prediction-kb-bert/)
 
 [![Maturity badge - level 2](https://img.shields.io/badge/Maturity-Level%202%20--%20First%20Release-yellowgreen.svg)](https://github.com/spraakbanken/getting-started/blob/main/scorecard.md)
 [![Stage](https://img.shields.io/pypi/status/sparv-sbx-word-prediction-kb-bert)](https://pypi.org/project/sparv-sbx-word-prediction-kb-bert/)
