@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [unreleased]
+
+### 🚀 Features
+
+- Add org(sbx) namespace
+
+### 📚 Documentation
+
+- Add supported python version
+
+### ⚙️ Miscellaneous Tasks
+
+- Rename project to sparv-sbx-word-prediction
+
 ## [0.5.2] - 2024-03-21
 
 ### 🐛 Bug Fixes
