@@ -4,8 +4,8 @@ from sbx_word_prediction_kb_bert import (
     TopKPredictor,
 )
 from transformers import (  # type: ignore [import-untyped]
-    BertTokenizer,
     BertForMaskedLM,
+    BertTokenizer,
 )
 
 

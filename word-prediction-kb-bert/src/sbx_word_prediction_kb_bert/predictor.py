@@ -30,7 +30,7 @@ class TopKPredictor:
         if text.count("[MASK]") == 1:
             return self._run_pipeline_on_mask_context(text, k)
         raise RuntimeError(
-            f"can't handle large input and multiple [MASK]: {len(tokenized_inputs['input_ids'])} tokens > 512 tokens"
+            f"can't handle large input and multiple [MASK]: {len(tokenized_inputs['input_ids'])} tokens > 512 tokens"  # noqa: E501
         )
 
     def _run_pipeline_on_mask_context(self, text, k):
