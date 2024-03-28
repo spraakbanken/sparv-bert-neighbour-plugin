@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [unreleased]
+
+### 🚀 Features
+
+- Enable python 3.8 (and disable py 3.12)
+
 ## [0.5.3] - 2024-03-26
 
 ### 🚀 Features
