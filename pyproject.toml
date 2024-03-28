@@ -1,7 +1,7 @@
 [project]
 name = "sparv-sbx-word-prediction-workspace"
 dependencies = []
-requires-python = ">=3.9"
+requires-python = ">=3.8.1,<3.12"
 version = "0.0.0"
 
 [tool.pdm.dev-dependencies]
