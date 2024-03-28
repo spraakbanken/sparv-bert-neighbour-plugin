@@ -1,18 +1,19 @@
 from dataclasses import dataclass
 from typing import Optional, Tuple
+
 from sparv.api import (  # type: ignore [import-untyped]
-    annotator,
-    Output,
-    get_logger,
     Annotation,
     Config,
+    Output,
     SparvErrorMessage,
+    annotator,
+    get_logger,
+)
+from transformers import (  # type: ignore [import-untyped]
+    BertForMaskedLM,
+    BertTokenizer,
 )
 
-from transformers import (  # type: ignore [import-untyped]
-    BertTokenizer,
-    BertForMaskedLM,
-)
 from sbx_word_prediction_kb_bert.predictor import TopKPredictor
 
 __description__ = "Calculating word predictions by mask a word in a BERT model."
@@ -77,13 +78,13 @@ def predict_words__kb_bert(
         num_predictions = int(num_predictions_str)
     except ValueError as exc:
         raise SparvErrorMessage(
-            f"'sbx_word_prediction_kb_bert.num_predictions' must contain an 'int' got: '{num_predictions_str}'"
+            f"'sbx_word_prediction_kb_bert.num_predictions' must contain an 'int' got: '{num_predictions_str}'"  # noqa: E501
         ) from exc
     try:
         num_decimals = int(num_decimals_str)
     except ValueError as exc:
         raise SparvErrorMessage(
-            f"'sbx_word_prediction_kb_bert.num_decimals' must contain an 'int' got: '{num_decimals_str}'"
+            f"'sbx_word_prediction_kb_bert.num_decimals' must contain an 'int' got: '{num_decimals_str}'"  # noqa: E501
         ) from exc
     tokenizer_name, tokenizer_revision = MODELS["kb-bert"].tokenizer_name_and_revision()
 

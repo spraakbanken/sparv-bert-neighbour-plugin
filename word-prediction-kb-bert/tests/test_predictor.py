@@ -1,10 +1,10 @@
 from itertools import islice
-from typing import Tuple
+from typing import Dict, Tuple
+
 import pytest
 from sbx_word_prediction_kb_bert.predictor import TopKPredictor
 
-
-TEXTS: dict[str, str] = {
+TEXTS: Dict[str, str] = {
     "short": "[MASK] åt glassen utanför kiosken .",
     "long-mask-middle": """
     Frisörbranschen påverkas väldigt negativt av den nuvarande situationen när kunderna inte kan komma till salongerna, vilket förstås gör att många frisörer är hotade av konkurs
@@ -16,7 +16,7 @@ TEXTS: dict[str, str] = {
     Om jag bestämmer mig för att skriva en lång text så blir jag hungrig. Jag måste laga kaffe och kanske springa ner till bageriet, eller leta efter en karamell eller något annat sött. Och så när jag är klar med mina förberedelse ringer min före detta svärdotter. Hon har just blivit opererad. Det var blindtarmen och något mer som de plockade ut. Hennes mamma säger att hon gnäller och hennes nuvarande svärmorsa förstår inga europeiska språk, inte ett enda ord. Keine wörte bitte! Då sitter man där och ska vara snäll. Den nya svärdottern, hon som efterträdde den gamla, ringer aldrig. Kanske därför tar jag den gamla som en kompensation, eller en evig ursäkt för att inte skriva en lång text.
     Om jag nu bestämmer mig för att skriva en kort text, vad då? Då måste jag absolut börja med att kolla facebook, sedan mailboxen och sedan hur det går där borta i Sverige för de stackars bönderna som söker fruar men har så vansinnigt flotta och fina traktorer och hus som förr i världen skulle betraktas som herrgårdar, och så ringer telefonen. Det är en barndomsvän. Han brukar ringa varannan dag. Han har en ganska gedigen utbildning. Matematiker och gudarna vet vad, och sen fick han hjärnblödning och blev överkörd av en buss och ramlade omkull i Nationalteaterns trappuppgång, i den ordningen. Han orar sig för spionerna. Det finns tydligen spioner överallt. Det finns spioner utanför den amerikanska ambassaden och det finns spioner inni i den amerikanska ambassaden. Nu råkar denna stora vita byggnad, som hyser de amerikanska diplomaterna finnas här alldeles i närheten. De där stackarna som står givakt i alla väder kan åtminstone inte vara spionerna, men spionerna är kanske osynliga? I alla fall har jag fått reda på, genom en konstnär som spelar jultomte året om, att spionerna bakom den norska ambassaden är osynliga men om man står helt stilla kan man höra när de jojkar till varandra.
     Jag går och ser en föreställning och måste naturligtvis skriva lika långt varje gång. I går såg jag en ung man som åt upp ett päron, det var alltså för att vara orginell, för äpplet finns ju som en klassisk föreställning. Denna unga man som har långa ben, vansinnigt långa ben, ovanligt långa ben, lyckades tråka ihjäl femtiotvå personer som sprang ut ur en gammal fiskfabrik och kommer nog aldrig att se en s k föreställning där han finns med nån mer gång. Oj vad det är svårt att konsentrera sig om man har gäster. De ska ha kaffe och de ska underhållas, då kan man heller inte skriva en lång eller en kort text.
-    """,
+    """,  # noqa: RUF001
 }
 
 
@@ -44,7 +44,7 @@ def test_rounding(kb_bert_predictor: TopKPredictor) -> None:
 
 
 def remove_scores(actual):
-    return "|".join(map(lambda x: x.split(":")[0], actual.split("|")))
+    return "|".join((x.split(":")[0] for x in actual.split("|")))
 
 
 def test_long_text(kb_bert_predictor: TopKPredictor) -> None:
