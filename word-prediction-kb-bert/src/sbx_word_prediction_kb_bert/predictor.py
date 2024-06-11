@@ -1,4 +1,9 @@
+from dataclasses import dataclass
+from typing import Optional, Tuple
+
 from transformers import (  # type: ignore [import-untyped]
+    BertForMaskedLM,
+    BertTokenizer,
     FillMaskPipeline,
 )
 
@@ -17,11 +22,33 @@ SCORE_FORMATS = {
 
 
 class TopKPredictor:
-    def __init__(self, *, tokenizer, model, num_decimals: int = 3) -> None:
-        self.tokenizer = tokenizer
-        self.model = model
+    def __init__(
+        self,
+        *,
+        tokenizer: Optional[BertTokenizer] = None,
+        model: Optional[BertForMaskedLM] = None,
+        num_decimals: int = 3,
+    ) -> None:
+        self.tokenizer = tokenizer or self._default_tokenizer()
+        self.model = model or self._default_model()
         self.num_decimals = num_decimals
-        self.pipeline = FillMaskPipeline(model=model, tokenizer=tokenizer)
+        self.pipeline = FillMaskPipeline(model=self.model, tokenizer=self.tokenizer)
+
+    @classmethod
+    def _default_model(cls) -> BertForMaskedLM:
+        return BertForMaskedLM.from_pretrained(
+            MODELS["kb-bert"].model_name, revision=MODELS["kb-bert"].model_revision
+        )
+
+    @classmethod
+    def _default_tokenizer(cls) -> BertTokenizer:
+        tokenizer_name, tokenizer_revision = MODELS[
+            "kb-bert"
+        ].tokenizer_name_and_revision()
+
+        return BertTokenizer.from_pretrained(
+            tokenizer_name, revision=tokenizer_revision
+        )
 
     def get_top_k_predictions(self, text: str, k: int = 5) -> str:
         tokenized_inputs = self.tokenizer(text)
@@ -69,3 +96,25 @@ class TopKPredictor:
             return f"|{predictions_str}|" if predictions_str else "|"
         else:
             return "|"
+
+
+@dataclass
+class HuggingfaceModel:
+    model_name: str
+    model_revision: str
+    tokenizer_name: Optional[str] = None
+    tokenizer_revision: Optional[str] = None
+
+    def tokenizer_name_and_revision(self) -> Tuple[str, str]:
+        if tokenizer_name := self.tokenizer_name:
+            return tokenizer_name, self.tokenizer_revision or "main"
+        else:
+            return self.model_name, self.model_revision
+
+
+MODELS = {
+    "kb-bert": HuggingfaceModel(
+        model_name="KBLab/bert-base-swedish-cased",
+        model_revision="c710fb8dff81abb11d704cd46a8a1e010b2b022c",
+    )
+}

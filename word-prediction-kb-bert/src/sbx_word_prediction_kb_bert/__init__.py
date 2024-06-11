@@ -1,6 +1,3 @@
-from dataclasses import dataclass
-from typing import Optional, Tuple
-
 from sparv.api import (  # type: ignore [import-untyped]
     Annotation,
     Config,
@@ -8,10 +5,6 @@ from sparv.api import (  # type: ignore [import-untyped]
     SparvErrorMessage,
     annotator,
     get_logger,
-)
-from transformers import (  # type: ignore [import-untyped]
-    BertForMaskedLM,
-    BertTokenizer,
 )
 
 from sbx_word_prediction_kb_bert.predictor import TopKPredictor
@@ -39,28 +32,6 @@ logger = get_logger(__name__)
 TOK_SEP = " "
 
 
-@dataclass
-class HuggingfaceModel:
-    model_name: str
-    model_revision: str
-    tokenizer_name: Optional[str] = None
-    tokenizer_revision: Optional[str] = None
-
-    def tokenizer_name_and_revision(self) -> Tuple[str, str]:
-        if tokenizer_name := self.tokenizer_name:
-            return tokenizer_name, self.tokenizer_revision or "main"
-        else:
-            return self.model_name, self.model_revision
-
-
-MODELS = {
-    "kb-bert": HuggingfaceModel(
-        model_name="KBLab/bert-base-swedish-cased",
-        model_revision="c710fb8dff81abb11d704cd46a8a1e010b2b022c",
-    )
-}
-
-
 @annotator("Word prediction tagging with a masked Bert model", language=["swe"])
 def predict_words__kb_bert(
     out_prediction: Output = Output(
@@ -86,18 +57,8 @@ def predict_words__kb_bert(
         raise SparvErrorMessage(
             f"'sbx_word_prediction_kb_bert.num_decimals' must contain an 'int' got: '{num_decimals_str}'"  # noqa: E501
         ) from exc
-    tokenizer_name, tokenizer_revision = MODELS["kb-bert"].tokenizer_name_and_revision()
-
-    tokenizer = BertTokenizer.from_pretrained(
-        tokenizer_name, revision=tokenizer_revision
-    )
-    model = BertForMaskedLM.from_pretrained(
-        MODELS["kb-bert"].model_name, revision=MODELS["kb-bert"].model_revision
-    )
 
     predictor = TopKPredictor(
-        model=model,
-        tokenizer=tokenizer,
         num_decimals=num_decimals,
     )
 
