@@ -44,7 +44,7 @@ def test_rounding(kb_bert_predictor: TopKPredictor) -> None:
 
 
 def remove_scores(actual):
-    return "|".join((x.split(":")[0] for x in actual.split("|")))
+    return "|".join(x.split(":")[0] for x in actual.split("|"))
 
 
 def test_long_text(kb_bert_predictor: TopKPredictor) -> None:
