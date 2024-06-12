@@ -50,7 +50,7 @@ help:
 	@echo ""
 	@echo "publish [branch=]"
 	@echo "   pushes the given branch including tags to origin, for CI to publish based on tags. (Default: branch='main')"
-	@echo "   Typically used after `make bumpversion`"
+	@echo "   Typically used after 'make bumpversion'"
 	@echo ""
 	@echo "prepare-release"
 	@echo "   run tasks to prepare a release"
@@ -88,6 +88,11 @@ install-dev:
 # setup production environment
 install:
 	pdm sync --prod
+
+lock: pdm.lock
+
+pdm.lock: pyproject.toml
+	pdm lock
 
 .PHONY: test
 test:
@@ -142,19 +147,28 @@ publish:
 
 
 .PHONY: prepare-release
-prepare-release: tests/requirements-testing.lock
+prepare-release: update-changelog tests/requirements-testing.lock
 
 # we use lock extension so that dependabot doesn't pick up changes in this file
-tests/requirements-testing.lock: pyproject.toml
+tests/requirements-testing.lock: pyproject.toml pdm.lock
 	pdm export --dev --format requirements --output $@
+
+.PHONY: update-changelog
+update-changelog: CHANGELOG.md
+
+.PHONY: CHANGELOG.md
+CHANGELOG.md:
+	git cliff --unreleased --prepend $@
+
+# update snapshots for `syrupy`
+.PHONY: snapshot-update
+snapshot-update:
+	${INVENV} pytest --snapshot-update
+
+### === project targets below this line ===
 
 .PHONY: kb-bert-prepare-release
 kb-bert-prepare-release: word-prediction-kb-bert/CHANGELOG.md
-
-update-changelog: CHANGELOG.md word-prediction-kb-bert/CHANGELOG.md
-
-CHANGELOG.md:
-	git cliff --unreleased --prepend $@
 
 .PHONY: word-prediction-kb-bert/CHANGELOG.md
 word-prediction-kb-bert/CHANGELOG.md:
