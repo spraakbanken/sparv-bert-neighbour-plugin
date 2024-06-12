@@ -83,6 +83,9 @@ install-dev:
 install:
 	pdm sync --prod
 
+pdm.lock: pyproject.toml
+	pdm lock
+
 .PHONY: test
 test:
 	${INVENV} pytest -vv ${tests}
@@ -131,8 +134,8 @@ publish:
 prepare-release: tests/requirements-testing.lock CHANGELOG.md
 
 # we use lock extension so that dependabot doesn't pick up changes in this file
-tests/requirements-testing.lock: pyproject.toml
-	pdm export --dev --format requirements --output $@
+tests/requirements-testing.lock: pdm.lock
+	pdm export --dev --format requirements --without-hashes --output $@
 
 CHANGELOG.md:
 	git cliff --unreleased --prepend $@
