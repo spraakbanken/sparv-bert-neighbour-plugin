@@ -3,7 +3,7 @@ from sbx_word_prediction_kb_bert.annotations import (
     load_predictor,
     predict_words__kb_bert,
 )
-from sparv.api import SparvErrorMessage
+from sparv.api import SparvErrorMessage  # type: ignore [import-untyped]
 from sparv_pipeline_testing import MemoryOutput, MockAnnotation
 
 
@@ -24,7 +24,7 @@ def test_predict_words__kb_bert__bad_int_raises() -> None:
 
 
 def test_predict_words__kb_bert(snapshot) -> None:
-    output = MemoryOutput()
+    output: MemoryOutput = MemoryOutput()
 
     word = MockAnnotation(
         name="<token:word>", values=["Han", "åt", "glassen", "utanför", "kiosken", "."]
