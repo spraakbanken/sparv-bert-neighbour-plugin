@@ -1,12 +1,15 @@
+from typing import Optional
+
+from sparv import api as sparv_api  # type: ignore [import-untyped]
 from sparv.api import (  # type: ignore [import-untyped]
     Annotation,
     Config,
     Output,
     SparvErrorMessage,
     annotator,
-    get_logger,
 )
 
+from sbx_word_prediction_kb_bert.constants import PROJECT_NAME
 from sbx_word_prediction_kb_bert.predictor import TopKPredictor
 
 __description__ = "Calculating word predictions by mask a word in a BERT model."
@@ -27,40 +30,49 @@ __config__ = [
 
 __version__ = "0.5.4"
 
-logger = get_logger(__name__)
+logger = sparv_api.get_logger(__name__)
 
 TOK_SEP = " "
 
 
-@annotator("Word prediction tagging with a masked Bert model", language=["swe"])
+def load_predictor(num_decimals_str: str) -> TopKPredictor:
+    try:
+        num_decimals = int(num_decimals_str)
+    except ValueError as exc:
+        raise sparv_api.SparvErrorMessage(
+            f"'{PROJECT_NAME}.num_decimals' must contain an 'int' got: '{num_decimals_str}'"  # noqa: E501
+        ) from exc
+
+    return TopKPredictor(num_decimals=num_decimals)
+
+
+@annotator(
+    "Word prediction tagging with a masked Bert model",
+    language=["swe"],
+    preloader=load_predictor,
+    preloader_params=["num_decimals_str"],
+    preloader_target="predictor_preloaded",
+)
 def predict_words__kb_bert(
     out_prediction: Output = Output(
-        "<token>:sbx_word_prediction_kb_bert.word-prediction--kb-bert",
-        cls="word_prediction",
+        f"<token>:{PROJECT_NAME}.word-prediction--kb-bert",
         description="Word predictions from masked BERT (format: '|<word>:<score>|...|)",
     ),
     word: Annotation = Annotation("<token:word>"),
     sentence: Annotation = Annotation("<sentence>"),
-    num_predictions_str: str = Config("sbx_word_prediction_kb_bert.num_predictions"),
-    num_decimals_str: str = Config("sbx_word_prediction_kb_bert.num_decimals"),
+    num_predictions_str: str = Config(f"{PROJECT_NAME}.num_predictions"),
+    num_decimals_str: str = Config(f"{PROJECT_NAME}.num_decimals"),
+    predictor_preloaded: Optional[TopKPredictor] = None,
 ) -> None:
     logger.info("predict_words")
     try:
         num_predictions = int(num_predictions_str)
     except ValueError as exc:
         raise SparvErrorMessage(
-            f"'sbx_word_prediction_kb_bert.num_predictions' must contain an 'int' got: '{num_predictions_str}'"  # noqa: E501
-        ) from exc
-    try:
-        num_decimals = int(num_decimals_str)
-    except ValueError as exc:
-        raise SparvErrorMessage(
-            f"'sbx_word_prediction_kb_bert.num_decimals' must contain an 'int' got: '{num_decimals_str}'"  # noqa: E501
+            f"'{PROJECT_NAME}.num_predictions' must contain an 'int' got: '{num_predictions_str}'"  # noqa: E501
         ) from exc
 
-    predictor = TopKPredictor(
-        num_decimals=num_decimals,
-    )
+    predictor = predictor_preloaded or load_predictor(num_decimals_str)
 
     sentences, _orphans = sentence.get_children(word)
     token_word = list(word.read())

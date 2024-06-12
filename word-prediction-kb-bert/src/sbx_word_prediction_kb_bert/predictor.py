@@ -57,8 +57,8 @@ class TopKPredictor:
             ),
         )
         if torch.cuda.is_available() and torch.cuda.device_count() == 1:
-            model = model.cuda()
-        return model
+            model = model.cuda()  # type: ignore
+        return model  # type: ignore
 
     @classmethod
     def _default_tokenizer(cls) -> BertTokenizer:
@@ -72,12 +72,12 @@ class TopKPredictor:
 
     def get_top_k_predictions(self, text: str, k: int = 5) -> str:
         tokenized_inputs = self.tokenizer(text)
-        if len(tokenized_inputs["input_ids"]) <= 512:
+        if len(tokenized_inputs["input_ids"]) <= 512:  # type: ignore
             return self._run_pipeline(text, k)
         if text.count("[MASK]") == 1:
             return self._run_pipeline_on_mask_context(text, k)
         raise RuntimeError(
-            f"can't handle large input and multiple [MASK]: {len(tokenized_inputs['input_ids'])} tokens > 512 tokens"  # noqa: E501
+            f"can't handle large input and multiple [MASK]: {len(tokenized_inputs['input_ids'])} tokens > 512 tokens"  # noqa: E501 # type: ignore
         )
 
     def _run_pipeline_on_mask_context(self, text, k):
