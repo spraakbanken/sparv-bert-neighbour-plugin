@@ -1,0 +1,11 @@
+# serializer version: 1
+# name: test_predict_words__kb_bert
+  list([
+    '|Vi:0.25|Jag:0.18|De:0.13|Hon:0.09|Han:0.09|',
+    '|köpte:0.18|sålde:0.15|hämtade:0.04|tog:0.04|tappade:0.04|',
+    '|frukost:0.23|lunch:0.21|middag:0.09|korv:0.04|hamburgare:0.03|',
+    '|i:0.92|från:0.03|utanför:0.02|vid:0.02|',
+    '|fönstret:0.21|dörren:0.05|restaurangen:0.05|huset:0.04|kiosken:0.03|',
+    '|.:0.99|?:0.01|',
+  ])
+# ---
