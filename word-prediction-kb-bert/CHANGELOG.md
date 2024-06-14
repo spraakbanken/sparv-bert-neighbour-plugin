@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
+## [unreleased]
+
+### 🚀 Features
+
+- Use gpu if available
+- Add preloader
+
+### 🚜 Refactor
+
+- Load model and tokenizer as default
+
+### 🧪 Testing
+
+- Add tests for annotator
+
+### ⚙️ Miscellaneous Tasks
+
+- Add py.typed marker
+
 ## [0.5.4] - 2024-03-28
 
 ### 🚀 Features

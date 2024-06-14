@@ -1,16 +1,19 @@
 metadata:
-  id: hello-word-prediction
-  language: swe
+    id: hello-word-prediction
+    language: swe
 
 import:
-  importer: text_import:parse
+    importer: text_import:parse
 
 export:
-  annotations:
-    - <sentence>
-    - <token:word>
-    - <token>:stanza.pos
-    - <token>:sbx_word_prediction_kb_bert.word-prediction--kb-bert
+    annotations:
+        - <sentence>
+        - <token:word>
+        - <token>:stanza.pos
+        - <token>:sbx_word_prediction_kb_bert.word-prediction--kb-bert
 
 sparv:
-  compression: none
+    compression: none
+
+preload:
+    - sbx_word_prediction_kb_bert:predict_words__kb_bert
