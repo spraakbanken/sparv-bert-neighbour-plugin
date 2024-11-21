@@ -53,7 +53,7 @@ jobs:
 
       - name: uv sync --dev --upgrade
         if: hashFiles('uv.lock') != ''
-        run: uv sync --dev --upgrade --all-packages
+        run: uv sync --dev --upgrade --all-packages --all-extras
 
       - name: make test
         if: hashFiles('uv.lock') != ''
