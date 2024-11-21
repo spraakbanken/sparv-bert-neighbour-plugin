@@ -9,4 +9,9 @@ version = "0.0.0"
 members = ["word-prediction-kb-bert"]
 
 [dependency-groups]
-dev = ["pytest>=8.3.3"]
+dev = [
+    "pytest-cov>=6.0.0",
+    "pytest>=8.3.3",
+    "ruff>=0.7.4",
+    "mypy>=1.13.0",
+]
