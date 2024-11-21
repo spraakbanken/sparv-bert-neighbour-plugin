@@ -51,18 +51,18 @@ help:
 	@echo ""
 
 PLATFORM := `uname -o`
-REPO := "sparv-sbx-word-prediction"
-PROJECT_SRC := "src/word_prediction"
+REPO := sparv-sbx-word-prediction
+PROJECT_SRC := src/sbx_word_prediction_kb_bert
 
 ifeq (${VIRTUAL_ENV},)
   VENV_NAME = .venv
-  INVENV = pdm run
+  INVENV = uv run
 else
   VENV_NAME = ${VIRTUAL_ENV}
   INVENV =
 endif
 
-default_cov := "--cov=${PROJECT_SRC}"
+default_cov := "--cov=${PROJECT_SRC}/"
 cov_report := "term-missing"
 cov := ${default_cov}
 
@@ -77,14 +77,14 @@ dev: install-dev
 
 # setup development environment
 install-dev:
-	pdm install --dev
+	uv sync --all-packages --dev
 
 # setup production environment
 install:
-	pdm sync --prod
+	uv sync --all-packages --no-dev
 
 pdm.lock: pyproject.toml
-	pdm lock
+	uv lock
 
 .PHONY: test
 test:
@@ -110,7 +110,7 @@ lint:
 	${INVENV} ruff ${PROJECT_SRC} ${tests}
 
 part := "patch"
-bumpversion: 
+bumpversion:
 	${INVENV} bump-my-version bump ${part}
 
 # run formatter(s)
@@ -123,7 +123,7 @@ check-fmt:
 	${INVENV} ruff format --check ${PROJECT_SRC} ${tests}
 
 build:
-	pdm build
+	uv build
 
 branch := "main"
 publish:
@@ -135,7 +135,7 @@ prepare-release: tests/requirements-testing.lock CHANGELOG.md
 
 # we use lock extension so that dependabot doesn't pick up changes in this file
 tests/requirements-testing.lock: pdm.lock
-	pdm export --dev --format requirements --without-hashes --output $@
+	uv export --dev --format requirements-txt --no-hashes --no-emit-project --output-file $@
 
 CHANGELOG.md:
 	git cliff --unreleased --prepend $@
