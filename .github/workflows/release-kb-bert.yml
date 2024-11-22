@@ -124,7 +124,7 @@ jobs:
 
     needs:
       - test-build
-    if: success() && startsWith(github.ref, 'refs/tags/v')
+    if: success() && startsWith(github.ref, 'refs/tags/word-prediction-kb-bert-v')
     runs-on: ubuntu-latest
     environment: release
     permissions:
