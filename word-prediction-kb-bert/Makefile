@@ -113,6 +113,9 @@ part := "patch"
 bumpversion:
 	${INVENV} bump-my-version bump ${part}
 
+bumpversion-show:
+	${INVENV} bump-my-version show-bump
+
 # run formatter(s)
 fmt:
 	${INVENV} ruff format ${PROJECT_SRC} ${tests}

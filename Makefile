@@ -175,7 +175,7 @@ word-prediction-kb-bert/CHANGELOG.md:
 	git cliff --unreleased --include-path "word-prediction-kb-bert/**/*" --include-path "examples/word-prediction-kb-bert/**/*" --prepend $@
 
 kb-bert-bumpversion:
-	cd word-prediction-kb-bert; $(MAKE) bump-my-version bump ${part}
+	cd word-prediction-kb-bert; $(MAKE) bumpversion $(MFLAGS)
 
 kb-bert-bumpversion-show:
-	cd word-prediction-kb-bert; $(MAKE) bump-my-version show-bump
+	cd word-prediction-kb-bert; $(MAKE) bumpversion-show
