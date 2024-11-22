@@ -1,0 +1,19 @@
+id: swe-sbx-word-prediction-kb-bert
+name:
+    swe: Ordpredikation med KBLab/bert-base-swedish-cased för svenska
+    eng: Word prediction with KBLab/bert-base-swedish-cased for Swedish
+short_description:
+    swe: Annotering av ord-predikation för varje text i en text.
+    eng: Word prediction annotations for each word in a text.
+task: word-prediction
+annotations:
+    - <token>:sbx_word_prediction_kb_bert.word-prediction--kb-bert
+example_output: |-
+    ```xml
+    <token word="Engelbert" word-prediction--kb-bert="|Jag:0.388|Vi:0.384|Han:0.082|De:0.031|Hon:0.022|" pos="PM">Engelbert</token>
+    <token word="tar" word-prediction--kb-bert="|tar:0.541|tog:0.208|kör:0.157|körde:0.050|åker:0.004|" pos="VB">tar</token>
+    <token word="Volvon" word-prediction--kb-bert="|tunnelbanan:0.275|oss:0.118|bussen:0.116|mig:0.100|bilen:0.099|" pos="PM">Volvon</token>
+    <token word="till" word-prediction--kb-bert="|till:0.897|från:0.038|mot:0.028|på:0.009|förbi:0.007|" pos="PP">till</token>
+    <token word="Tele2" word-prediction--kb-bert="|Friends:0.584|Stockholm:0.136|Globen:0.037|Djurgården:0.034|Stockholms:0.027|" pos="PM">Tele2</token>
+    <token word="Arena" word-prediction--kb-bert="|arena:0.518|Arena:0.471|,:0.002|Globen:0.001|Stockholm:0.001|" pos="PM">Arena</token>
+    ```
