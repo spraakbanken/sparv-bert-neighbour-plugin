@@ -111,7 +111,7 @@ jobs:
         run: make test
 
   run-example:
-    name: ubuntu / 3.8 / run-example
+    name: ubuntu / 3.9 / run-example
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -120,7 +120,7 @@ jobs:
       #  -----  setup python   -----
       #----------------------------------------------
       - name: Set up uv
-        uses: astral-sh/setup-uv@v3
+        uses: astral-sh/setup-uv@v5
         with:
           version: ${{ env.UV_VERSION }}
           enable-cache: true
