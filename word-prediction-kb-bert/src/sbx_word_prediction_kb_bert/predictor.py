@@ -25,6 +25,22 @@ SCORE_FORMATS = {
 }
 
 
+def _get_dtype() -> torch.dtype:
+    if torch.cuda.is_available():
+        logger.info("Using GPU (cuda)")
+        dtype = torch.float16
+    else:
+        logger.warning("Using CPU, is cuda available?")
+        dtype = torch.float32
+    return dtype
+
+
+def _get_device_map() -> Optional[str]:
+    return (
+        "auto" if torch.cuda.is_available() and torch.cuda.device_count() > 1 else None
+    )
+
+
 class TopKPredictor:
     def __init__(
         self,
@@ -36,7 +52,17 @@ class TopKPredictor:
         self.tokenizer = tokenizer or self._default_tokenizer()
         self.model = model or self._default_model()
         self.num_decimals = num_decimals
-        self.pipeline = FillMaskPipeline(model=self.model, tokenizer=self.tokenizer)
+        if torch.cuda.is_available() and torch.cuda.device_count() == 1:
+            logger.info("Using GPU (cuda)")
+            self.model = self.model.cuda()  # type: ignore
+        else:
+            logger.warning("Using CPU, is cuda available?")
+        self.pipeline = FillMaskPipeline(
+            model=self.model,
+            tokenizer=self.tokenizer,
+            torch_dtype=_get_dtype(),
+            device_map=_get_device_map(),
+        )
 
     @classmethod
     def _default_model(cls) -> BertForMaskedLM:
