@@ -35,12 +35,6 @@ def _get_dtype() -> torch.dtype:
     return dtype
 
 
-def _get_device_map() -> Optional[str]:
-    return (
-        "auto" if torch.cuda.is_available() and torch.cuda.device_count() > 1 else None
-    )
-
-
 class TopKPredictor:
     def __init__(
         self,
@@ -61,7 +55,6 @@ class TopKPredictor:
             model=self.model,
             tokenizer=self.tokenizer,
             torch_dtype=_get_dtype(),
-            device_map=_get_device_map(),
         )
 
     @classmethod
